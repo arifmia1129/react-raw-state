@@ -5,9 +5,9 @@ const Counter = () => {
 
     const reducer = (state, action) => {
         if (action.type === "INCREMENT") {
-            return state + 1;
+            return state + action.payload.count;
         } else if (action.type === "DECREMENT") {
-            return state - 1;
+            return state - action.payload.count;
         }
     }
 
@@ -16,8 +16,8 @@ const Counter = () => {
     return (
         <div>
             <h1>Count: {state}</h1>
-            <button onClick={() => dispatch({ type: "DECREMENT" })}>-</button>
-            <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
+            <button onClick={() => dispatch({ type: "DECREMENT", payload: { count: 5 } })}>-</button>
+            <button onClick={() => dispatch({ type: "INCREMENT", payload: { count: 5 } })}>+</button>
         </div>
     );
 };
