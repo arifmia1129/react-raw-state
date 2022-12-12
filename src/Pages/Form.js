@@ -1,42 +1,8 @@
 import React, { useReducer } from 'react';
+import { actionType } from '../state/actionType';
+import { initialState, reducer } from '../state/formReducer';
 
 const Form = () => {
-    const initialState = {
-        firstName: "",
-        lastName: "",
-        email: "",
-        gender: "",
-        education: "",
-        feedback: "",
-        term: false,
-        quantity: 0
-    };
-
-    const reducer = (state, action) => {
-        switch (action.type) {
-            case "TEXT":
-                return {
-                    ...state,
-                    [action.payload.name]: action.payload.value
-                }
-            case "TOGGLE":
-                return {
-                    ...state,
-                    term: !state.term
-                }
-            case "INCREMENT":
-                return {
-                    ...state,
-                    quantity: state.quantity + 1
-                }
-            case "DECREMENT":
-                return {
-                    ...state,
-                    quantity: state.quantity - 1
-                }
-            default: return state
-        }
-    }
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -51,7 +17,7 @@ const Form = () => {
                 <div>
                     <label htmlFor="firstName">First Name</label>
                     <input onChange={(e) => dispatch({
-                        type: "TEXT", payload: {
+                        type: actionType.TEXT, payload: {
                             name: e.target.name, value: e.target.value
                         }
                     })} type="text" name="firstName" id="firstName" />
@@ -59,7 +25,7 @@ const Form = () => {
                 <div>
                     <label htmlFor="lastName">Last Name</label>
                     <input onChange={(e) => dispatch({
-                        type: "TEXT", payload: {
+                        type: actionType.TEXT, payload: {
                             name: e.target.name, value: e.target.value
                         }
                     })} type="text" name="lastName" id="lastName" />
@@ -67,7 +33,7 @@ const Form = () => {
                 <div>
                     <label htmlFor="lastName">Email</label>
                     <input onChange={(e) => dispatch({
-                        type: "TEXT", payload: {
+                        type: actionType.TEXT, payload: {
                             name: e.target.name, value: e.target.value
                         }
                     })} type="text" name="email" id="email" />
@@ -77,18 +43,18 @@ const Form = () => {
                     <div>
                         <label htmlFor="male">Male</label>
                         <input onChange={(e) => dispatch({
-                            type: "TEXT", payload: {
+                            type: actionType.TEXT, payload: {
                                 name: e.target.name, value: e.target.value
                             }
                         })} type="radio" name="gender" value="male" id="male" />
                         <label htmlFor="female">Female</label>
                         <input onChange={(e) => dispatch({
-                            type: "TEXT", payload: {
+                            type: actionType.TEXT, payload: {
                                 name: e.target.name, value: e.target.value
                             }
                         })} type="radio" name="gender" value="female" id="female" />
                         <input onChange={(e) => dispatch({
-                            type: "TEXT", payload: {
+                            type: actionType.TEXT, payload: {
                                 name: e.target.name, value: e.target.value
                             }
                         })} type="radio" name="gender" value="other" id="other" />
@@ -96,7 +62,7 @@ const Form = () => {
                     <div>
                         <label htmlFor="education">Education</label>
                         <select onChange={(e) => dispatch({
-                            type: "TEXT", payload: {
+                            type: actionType.TEXT, payload: {
                                 name: e.target.name, value: e.target.value
                             }
                         })} name="education" id="education">
@@ -107,13 +73,13 @@ const Form = () => {
                     <div>
                         <label htmlFor="feedback">Feedback</label>
                         <input onChange={(e) => dispatch({
-                            type: "TEXT", payload: {
+                            type: actionType.TEXT, payload: {
                                 name: e.target.name, value: e.target.value
                             }
                         })} type="text" name="feedback" id="feedback" />
                     </div>
                     <div>
-                        <input onChange={() => { dispatch({ type: "TOGGLE" }) }} type="checkbox" name="term" id="term" />
+                        <input onChange={() => { dispatch({ type: actionType.TOGGLE }) }} type="checkbox" name="term" id="term" />
                         <label htmlFor="term">Term and condition</label>
 
                     </div>
